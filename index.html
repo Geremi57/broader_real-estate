@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>real estate</title>
+    <!-- <box icons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <a href="#" class="logo"
+        ><img src="./image/Broader (3) (2).png" alt=""
+      /></a>
+      <ul class="navbar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#feature">Features</a></li>
+
+        <li class="dropdown">
+          <span><a href="#property">Properties</a></span
+          ><span class="drop">▾</span>
+
+          <div class="dropdown-content">
+            <a href="#" data-type="apartment">Apartment</a>
+            <a href="#" data-type="land">Land</a>
+            <a href="#" data-type="mortgage">Mortgage Home</a>
+          </div>
+        </li>
+        <li><a href="#contact">Contact us</a></li>
+      </ul>
+      <div class="h-btn">
+        <a href="#" class="h-btn1">Login</a>
+        <a href="#" class="h-btn3">Sign up</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+      </div>
+    </header>
+
+    <!-- home-section -->
+    <section class="home" id="home">
+      <div class="home-text">
+        <h1>Your dream house is waiting for you!</h1>
+        <p>
+          Build Your Real Estate Portfolio, Brick by Brick Invest in high-value
+          properties with low minimum investments
+        </p>
+        <div class="h-search">
+          <form>
+            <input
+              type="search"
+              placeholder="search by location..."
+              class="search-input"
+            />
+            <input type="submit" value="search" />
+          </form>
+        </div>
+      </div>
+      <!-- <div class="home-img">
+        <img src="image/hero.png" />
+      </div> -->
+    </section>
+
+    <!-- feature section -->
+
+    <section class="feature" id="feature">
+      <div class="center-left">
+        <h2>Feature In</h2>
+      </div>
+      <div class="feature-content">
+        <div class="f-img">
+          <img src="image/f2.png" />
+        </div>
+        <div class="f-img"><img src="image/f3.png" /></div>
+        <div class="f-img"><img src="image/f4.png" /></div>
+        <div class="f-img"><img src="image/f5.png" /></div>
+      </div>
+    </section>
+
+    <!-- property section -->
+
+    <section class="property" id="property">
+      <div class="center-left">
+        <h2>Popular Residences</h2>
+      </div>
+      <div class="property-content">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide">
+              <div class="row">
+                <img src="image/p1.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bed"></i>
+                    4 Bed
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bath"></i>
+                    2 Bath
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-shape-square"></i>
+                    1200 sqft
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <img src="image/p2.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bed"></i>
+                    4 Bed
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bath"></i>
+                    2 Bath
+                  </a>
+
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-shape-square"></i>
+                    1200 sqft
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <img src="image/p3.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bed"></i>
+                    4 Bed
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bath"></i>
+                    2 Bath
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-shape-square"></i>
+                    1200 sqft
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <img src="image/p3.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bed"></i>
+                    4 Bed
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bath"></i>
+                    2 Bath
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-shape-square"></i>
+                    1200 sqft
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <img src="image/p3.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bed"></i>
+                    4 Bed
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-bath"></i>
+                    2 Bath
+                  </a>
+                  <a href="#" class="Residence-list">
+                    <i class="bx bx-shape-square"></i>
+                    1200 sqft
+                  </a>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="swiper-slide" data-type="apartment">
+              <div class="row">
+                <img src="image/p1.png" alt="" />
+                <h5>AlivaPiva javlin</h5>
+                <p>3090 town street, kabiria road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-bed"></i> 4 Bed</a
+                  >
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-bath"></i> 2 Bath</a
+                  >
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-shape-square"></i> 1200 sqft</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide" data-type="land">
+              <div class="row">
+                <img src="image/p2.png" alt="" />
+                <h5>Green Estate</h5>
+                <p>5000 sqm, Mombasa Road</p>
+                <div class="list">
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-shape-square"></i> 5000 sqft</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide" data-type="mortgage">
+              <div class="row">
+                <img src="image/p3.png" alt="" />
+                <h5>Mortgage Villas</h5>
+                <p>Ngong Road, Nairobi</p>
+                <div class="list">
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-bed"></i> 3 Bed</a
+                  >
+                  <a href="#" class="Residence-list"
+                    ><i class="bx bx-bath"></i> 2 Bath</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <div class="center-btn">
+        <a href="#" class="btn">View All Properties</a>
+      </div>
+
+      <div id="propModal" class="propmodal hidden">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 id="modal-title">Available Properties</h2>
+          <div id="modal-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section--2">
+      <div class="section__title">
+        <h2 class="section__description">Operations</h2>
+        <h3 class="section__header">
+          Everything as simple as possible, but no simpler.
+        </h3>
+      </div>
+
+      <div class="operations">
+        <div class="operations__tab-container">
+          <button
+            class="btn operations__tab operations__tab--1 operations__tab--active"
+            data-tab="1"
+          >
+            <span>01</span>Market you home
+          </button>
+          <button class="btn operations__tab operations__tab--2" data-tab="2">
+            <span>02</span>Expert advice
+          </button>
+          <button class="btn operations__tab operations__tab--3" data-tab="3">
+            <span>03</span>Property search
+          </button>
+        </div>
+        <div
+          class="operations__content operations__content--1 operations__content--active"
+        >
+          <div class="operations__icon operations__icon--1">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-upload"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">Marketing Properties</h5>
+          <p>
+            We list and market properties by creating compelling online listings
+            and advertising them to potential buyers. We also host open houses,
+            conduct property showings, and use our marketing expertise to
+            attract a wide range of prospective client.
+          </p>
+        </div>
+
+        <div class="operations__content operations__content--2">
+          <div class="operations__icon operations__icon--2">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-home"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            Buy a home or make your dreams come true, with instant loans.
+          </h5>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+        <div class="operations__content operations__content--3">
+          <div class="operations__icon operations__icon--3">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-user-x"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            No longer need your account? No problem! Close it instantly.
+          </h5>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- about section -->
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="image/Group 1.png" />
+      </div>
+      <div class="about-text">
+        <h2>We help people find homes</h2>
+        <p>
+          This site can’t be reached www.google.com’s server IP address could
+          not be found. Try: Checking the connection Checking the proxy,
+          firewall, and DNS configuration Running Windows Network Diagnostics
+          ERR_NAME_NOT_RESOLVED
+        </p>
+        <a href="#" class="btn">Get In Touch</a>
+      </div>
+    </section>
+
+    <section class="subscribe" id="subscribe">
+      <div class="subscribe-content">
+        <h2>Let's simply build with Broader.</h2>
+        <p>
+          This site can’t be reached www.google.com’s server IP address could
+          not be found. Try: Checking the connection Checking the proxy,
+          firewall, and DNS configuration Running Windows Network Diagnostics
+          ERR_NAME_NOT_RESOLVED
+        </p>
+        <a href="#" class="btn">Get Started</a>
+      </div>
+    </section>
+
+    <!-- contact -->
+    <section class="contact" id="contact">
+      <div class="contact-content">
+        <img src="image/Broader (3) (3).png" alt="" />
+        <p>
+          This site can’t be reached www.google.com’s server IP address could
+          not be found. Try: Checking the connection Checking the proxy,
+          firewall, and DNS configuration Running Windows Network Diagnostics
+          ERR_NAME_NOT_RESOLVED
+        </p>
+        <div class="icons">
+          <a href=""><i class="bx bxl-facebook"></i></a>
+          <a href=""><i class="bx bxl-instagram-alt"></i></a>
+          <a href=""><i class="bx bxl-twitter"></i></a>
+          <a href=""><i class="bx bxl-youtube"></i></a>
+        </div>
+      </div>
+      <div class="contact-content">
+        <h4>Nairobi</h4>
+        <li><a href="#">Land</a></li>
+        <li><a href="#">House</a></li>
+        <li><a href="#">Flats</a></li>
+        <li><a href="#">Apartments</a></li>
+      </div>
+      <div class="contact-content">
+        <h4>Kericho</h4>
+        <li><a href="#">Land</a></li>
+        <li><a href="#">House</a></li>
+        <li><a href="#">Flats</a></li>
+        <li><a href="#">Apartments</a></li>
+      </div>
+      <div class="contact-content">
+        <h4>Bungoma</h4>
+        <li><a href="#">Land</a></li>
+        <li><a href="#">House</a></li>
+        <li><a href="#">Flats</a></li>
+        <li><a href="#">Apartments</a></li>
+      </div>
+      <div class="contact-content">
+        <h4>Kakamega</h4>
+        <li><a href="#">Land</a></li>
+        <li><a href="#">House</a></li>
+        <li><a href="#">Flats</a></li>
+        <li><a href="#">Apartments</a></li>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <div id="loginModal" class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Find a place to call <span class="highlight">home</span>
+      </h2>
+      <form class="modal__form">
+        <label>First Name</label>
+        <input type="text" />
+        <label>Last Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <button class="btn">Sign_up&rarr;</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
