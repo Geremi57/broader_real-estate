@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+
+    <header>
+      <a href="#" class="logo"
+        ><img src="../image/Broader (3) (2).png" alt=""
+      /></a>
+      <ul class="navbar">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#about">About Us</a></li>
+        <li><a href="../index.html#feature">Features</a></li>
+
+        <li class="dropdown">
+          <span><a href="../index.html#property">Properties</a></span
+          ><span class="drop">▾</span>
+
+          <div class="dropdown-content">
+            <a href="#" data-type="apartment">Apartment</a>
+            <a href="#" data-type="land">Land</a>
+            <a href="#" data-type="mortgage">Mortgage Home</a>
+          </div>
+        </li>
+        <li><a href="../index.html#contact">Contact us</a></li>
+      </ul>
+      <div class="h-btn">
+        <!-- <a href="./login_page/login.html" class="h-btn1">Login</a> -->
+          <!-- <a href="../login_page/login.html" class="h-btn1">Login</a> -->
+        <a href="../login_page/login.html" class="h-btn3">Login</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+      </div>
+    </header>
+    <!-- <div class="header">
+      <a href="../index.html">HOME</a>
+
+      <a href="../financing/finance.html">FINANCING</a>
+
+      <a href="../login_page/login.html">LOGIN</a>
+
+      <a href="./register.html" class="currentPage">REGISTER</a>
+
+      <a href="../support-page/support.html">SUPPORT</a>
+    </div> -->
+
+    <hr />
+
+    <div class="title"><h1>Register</h1></div>
+    <div class="About">
+      <h3>About Yourself</h3>
+      <p>
+        Tell us more about yourself. We would love to get to know you. If you
+        already have an account &rarr;
+           <span class="registerLink"
+          ><a href="../login_page/login.html">Login here</a></span
+        >
+      </p>
+    </div>
+
+    <h4 class="subtitle">Your full name</h4>
+
+    <div class="details">
+      <form class="name">
+        <div class="first">
+          <input type="text" name="name" id="firstName" />
+          <p class="firstText">First(i.e given name)</p>
+          <p class="wrongName hidden">Please provide your two valid names</p>
+        </div>
+
+        <div class="last">
+          <input type="text" name="name" id="lastName" />
+          <p>Last(i.e surname or family name)</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact">
+      <form class="email">
+        <h4>Your personal email</h4>
+        <p>You will use it to login and stay informed</p>
+        <div class="write">
+          <input type="email" name="email" id="mail" />
+
+        <P class="emailText hidden"> Provide your email</P>
+        </div>
+        <div class="number">
+          <h4>Your mobile number</h4>
+          <p>It will be used for important notifications</p>
+          <input
+            type="tel"
+            name="telephone"
+            placeholder="eg:0712345678"
+            id="mobile"
+          />
+          <p class="valid hidden">please insert a valid number.</p>
+        </div>
+        <h4>Set your password</h4>
+        <div class="password">
+          <div class="enter">
+            <input type="password" name="password" id="pass" />
+
+            <p class="entPass">
+              Enter your password
+              <!-- <p class="strong password"></p> -->
+              <p class="check">
+                
+                <input type="checkbox" onclick="toggleSeePass()" />Show</p>
+              
+            </p>
+          </div>
+          <div class="confirmation">
+            <input type="password" name="password" id="confirm" />
+            <p class="confPass">
+              Confirm your password
+              <p class="check"><input type="checkbox" onclick="toggleSeeConf()" />Show</p>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <button class="start">START YOUR JOURNEY</button>
+
+    <hr />
+    <div class="footer">
+    
+      <p>Copyright © <span class="year"></span> Broader realtors</p>
+    </div>
+
+
+  </body>
+  <script src="register.js"></script>
+  <script>
+    const toggleSeePass = function(){
+      const passType = document.getElementById('pass');
+      if(passType.type === 'password'){
+        passType.type = 'text';
+      }
+      else{
+        passType.type = 'password';
+      }
+    }
+    const toggleSeeConf = function () {
+      const confType = document.getElementById("confirm");
+      if (confType.type === "password") {
+        confType.type = "text";
+      } else {
+        confType.type = "password";
+      }
+    };
+
+    // toggleSee();
+  </script>
+</html>

@@ -29,15 +29,6 @@ func CamelToSnakeCase(s string) string{
 					fmt.Println(final)
 					return final
 				}
-		// }
-		// }
-	// final += string(v)		
-			// if i == len(s){
-				// if v >= 'A' && v <= 'Z' {
-					// nFinal += string(v)
-					// return nFinal
-				
-			// }
 
 func main(){
 	arg := os.Args[1:]

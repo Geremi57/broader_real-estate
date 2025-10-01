@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+
+    <title>login page</title>
+
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <header>
+      <a href="#" class="logo"
+        ><img src="../image/Broader (3) (2).png" alt=""
+      /></a>
+      <ul class="navbar">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#about">About Us</a></li>
+        <li><a href="../index.html#feature">Features</a></li>
+
+        <li class="dropdown">
+          <span><a href="../index.html#property">Properties</a></span
+          ><span class="drop">▾</span>
+
+          <div class="dropdown-content">
+            <a href="#" data-type="apartment">Apartment</a>
+            <a href="#" data-type="land">Land</a>
+            <a href="#" data-type="mortgage">Mortgage Home</a>
+          </div>
+        </li>
+        <li><a href="../index.html#contact">Contact us</a></li>
+      </ul>
+      <div class="h-btn">
+        <!-- <a href="./login_page/login.html" class="h-btn1">Login</a> -->
+        <a href="../register-page/register.html" class="h-btn3">Sign up</a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+      </div>
+    </header>
+    <!-- 
+    <div class="header">
+      <a href="../index.html">HOME</a>
+
+      <a href="../financing/finance.html">FINANCING</a>
+
+      <a href="./login.html" class="currentPage">LOGIN</a>
+
+      <a href="../register-page/register.html">REGISTER</a>
+
+      <a href="../support-page/support.html">SUPPORT</a>
+    </div>
+
+    -->
+
+    <div class="title"><h1>Login</h1></div>
+
+    <div class="content">
+      <h3>Resume your application</h3>
+      <p>
+        If you dont have an account, we invite you to &rarr;
+        <span class="registerLink"
+          ><a href="../register-page/register.html"> register here</a></span
+        >
+      </p>
+    </div>
+
+    <!-- <hr /> -->
+    <div class="newsletter">
+      <h3>Email</h3>
+
+      <form class="emailInput">
+        <input
+          type="email"
+          name="email"
+          id="mail"
+          placeholder="Enter your email"
+        />
+        <p class="wrongMail hidden">please enter a valid email address</p>
+
+        <p class="incorrectemailorpassword hidden">
+          ⛔incorrect email or password
+        </p>
+        <h3>Password</h3>
+
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <p class="wrongPass hidden">Incorrect Password</p>
+
+        <br />
+        <input type="checkbox" name="rememberme" id="rememberme" />
+
+        <label for="rememberme">Remember me</label>
+
+        <br />
+        <button class="login">Login</button>
+      </form>
+    </div>
+    <hr />
+
+    <div class="footer">
+      <p>Copyright © <span class="year"></span> Broader realtors</p>
+    </div>
+    <hr />
+  </body>
+  <!-- <script src="../script.js"></script> -->
+  <script src="login.js"></script>
+</html>

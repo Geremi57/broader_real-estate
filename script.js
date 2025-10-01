@@ -1,3 +1,9 @@
+import { assets } from "./assets.js";
+
+console.log(
+  `${assets[0].image} luxury ${assets[0].type} in ${assets[0].location}`
+);
+
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", function () {
@@ -63,6 +69,7 @@ dropProps.addEventListener("click", function () {
 tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
 
+  // Guard clause
   if (!clicked) return;
 
   tabs.forEach((t) => t.classList.remove("operations__tab--active"));
@@ -70,6 +77,7 @@ tabsContainer.addEventListener("click", function (e) {
 
   clicked.classList.add("operations__tab--active");
 
+  // Activate content area
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
@@ -119,6 +127,44 @@ document.querySelectorAll(".dropdown-content a").forEach((item) => {
   });
 });
 
+const operationsTab = document.querySelector(".operations__tab-container");
+const operations = document.querySelector(".operations");
+
+console.log(operations);
+
+operationsTab.querySelectorAll(".operations__tab").forEach((element) => {
+  element.addEventListener("click", () => {
+    let currTab = element.dataset.tab;
+    if (currTab === "1") {
+      operations.style.backgroundImage =
+        'url("./image/mortgage-house-loan-website-login-graphic-concept.jpg")';
+    } else if (currTab === "2") {
+      operations.style.backgroundImage =
+        'url("./image/man-holding-house-sale-icon.jpg")';
+    } else if (currTab === "3") {
+      operations.style.backgroundImage =
+        'url("./image/man-holding-house-sale-icon.jpg")';
+    }
+    console.log("yaaaas", element.dataset.tab);
+    // if (element.dataset === 3) {
+
+    operations.style.backgroundImage.opacity = "0.5";
+
+    operations.style.backgroundSize = "cover";
+    operations.style.backgroundPosition = "center";
+    operations.style.backgroundRepeat = "no-repeat";
+    // }
+  });
+});
+
+// operationsTab.querySelectorAll(".operations__tab").forEach(
+//   el.addEventListener("click", () => {
+//     console.log(el.dataset);
+//       console.log(el);
+//     }
+//   })
+// );
+
 window.addEventListener("click", (e) => {
   if (e.target === modal) modal.classList.add("hidden");
 });
@@ -128,23 +174,23 @@ window.addEventListener("click", (e) => {
   console.log(dropContent.classList);
 });
 
-const openLoginModal = function () {
-  loginModal.classList.remove("hidden");
-  overlay.classList.remove("hidden");
-};
+// const openLoginModal = function () {
+//   loginModal.classList.remove("hidden");
+//   overlay.classList.remove("hidden");
+// };
 
-const closeLoginModal = function () {
-  loginModal.classList.add("hidden");
-  overlay.classList.add("hidden");
-  console.log(overlay.classList);
-};
+// const closeLoginModal = function () {
+//   loginModal.classList.add("hidden");
+//   overlay.classList.add("hidden");
+//   console.log(overlay.classList);
+// };
 
-console.log(btnOpenLogin);
+// console.log(btnOpenLogin);
 
-btnOpenLogin.addEventListener("click", function (e) {
-  e.preventDefault();
-  openLoginModal();
-});
+// btnOpenLogin.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   openLoginModal();
+// });
 
 loginClose.addEventListener("click", closeLoginModal);
 
