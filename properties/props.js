@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         768: {
           slidesPerView: 4,
-          spaceBetween: 40,
+          spaceBetween: 20,
         },
         1024: {
           slidesPerView: 5,
-          spaceBetween: 50,
+          spaceBetween: 30,
         },
       },
     });
