@@ -1,268 +1,379 @@
-import { assets } from "./assets.js";
-
-console.log(
-  `${assets[0].image} luxury ${assets[0].type} in ${assets[0].location}`
-);
-
-const header = document.querySelector("header");
-
-window.addEventListener("scroll", function () {
-  header.classList.toggle("sticky", this.window.scrollY > 10);
+const searchTypeBtn = document.querySelectorAll(".search_type_btn");
+console.log(document.querySelectorAll(".product_card"));
+// console.log(searchTypeBtn);
+searchTypeBtn.forEach((search_btn) => {
+  search_btn.addEventListener("click", () => {
+    // console.log("fiesttaaa");
+    searchTypeBtn.forEach((btn) => btn.classList.remove("active"));
+    search_btn.classList.add("active");
+  });
 });
 
-let menu = document.querySelector("#menu-icon");
 
-let navbar = document.querySelector(".navbar");
 
-menu.onclick = () => {
-  menu.classList.toggle("bx-x");
-  console.log(menu.classList);
-  navbar.classList.toggle("open");
-};
-
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 3,
-  spaceBetween: 20,
-  slidesPerGroup: 1,
-  loop: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2,
-    },
-    480: {
+ var swiper = new Swiper(".citiesSwiper", {
+      spaceBetween: 30,
+      // centeredSlides: true,
       slidesPerView: 1,
-    },
-  },
-});
-const modal = document.getElementById("propModal");
-const closeBtn = document.querySelector(".close");
-const modalTitle = document.getElementById("modal-title");
-const modalBody = document.getElementById("modal-body");
-const dropProps = document.querySelector(".drop");
-const dropContent = document.querySelector(".dropdown-content");
-const modalContent = document.querySelector("#propModal .modal-content");
-const btnOpenLogin = document.querySelector(".h-btn3");
-const loginModal = document.querySelector("#loginModal");
-const loginClose = document.querySelector(".btn--close-modal");
-const overlay = document.querySelector(".overlay");
-
-const tabs = document.querySelectorAll(".operations__tab");
-const tabsContainer = document.querySelector(".operations__tab-container");
-const tabsContent = document.querySelectorAll(".operations__content");
-
-dropProps.addEventListener("click", function () {
-  dropContent.classList.toggle("showDrop");
-});
-
-tabsContainer.addEventListener("click", function (e) {
-  const clicked = e.target.closest(".operations__tab");
-
-  // Guard clause
-  if (!clicked) return;
-
-  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
-  tabsContent.forEach((c) => c.classList.remove("operations__content--active"));
-
-  clicked.classList.add("operations__tab--active");
-
-  // Activate content area
-  document
-    .querySelector(`.operations__content--${clicked.dataset.tab}`)
-    .classList.add("operations__content--active");
-});
-
-document.querySelectorAll(".dropdown-content a").forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
-    const type = item.dataset.type;
-    console.log(type);
-
-    if (type === "land") {
-      modalContent.style.backgroundImage =
-        'url("./image/aerial-view-small-village-country-roadside.jpg")';
-    } else if (type === "apartment") {
-      modalContent.style.backgroundImage =
-        'url("./image/modern-residential-building.jpg")';
-    } else if (type === "mortgage") {
-      modalContent.style.backgroundImage =
-        'url("./image/house-isolated-field.jpg")';
-    }
-
-    modalContent.style.backgroundSize = "cover";
-    modalContent.style.backgroundPosition = "center";
-    modalContent.style.backgroundRepeat = "no-repeat";
-    modalTitle.textContent = `Available ${
-      type.charAt(0).toUpperCase() + type.slice(1)
-    }s`;
-
-    modalBody.innerHTML = "";
-
-    const allSlides = document.querySelectorAll(".swiper-slide");
-
-    allSlides.forEach((slide) => {
-      if (slide.dataset.type === type) {
-        const clone = slide.cloneNode(true);
-        clone.classList.remove("swiper-slide");
-        modalBody.appendChild(clone);
-      }
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+       breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 5,
+          spaceBetween: 30,
+        },
+      },
     });
 
-    if (modalBody.innerHTML === "") {
-      modalBody.innerHTML = `<p>No ${type}s available right now.</p>`;
+
+async function loadProps() {
+  const response = await fetch("http://localhost:8080/api/properties");
+      const assets = await response.json();
+      const apartments = []
+      const lands = []
+      const villas = []
+      const cottage = []
+      console.log(assets);
+      assets.forEach((asset) => {
+        if (asset.category == "apartments"){
+          apartments.push(asset)
+        }
+        else if (asset.category == "Land"){
+          lands.push(asset)
+        }
+        else if (asset.category == "cottage"){
+          cottage.push(asset)
+        }
+        else if (asset.category == "villas"){
+          villas.push(asset)
+        }
+      })
+      const all = [...cottage, ...apartments, ...villas]
+      console.log(all);
+      console.log(apartments);
+      
+      let content = document.querySelector(".featured_properties_content_container")
+      
+      
+            // content.innerHTML = ""
+            
+             all.forEach((apart) => {
+            const property = document.createElement("div")
+            property.classList.add("product_card");
+            property.setAttribute('data-id', apart.id)
+
+            property.innerHTML =  `
+            <div class="img_container" data-id = ${apart.id}>
+            <img src="${apart.image}" alt="product" class="product_img">
+            <div class="text_container">
+            <a href="properties/property.html?link=${apart.link}">
+            <h3>${apart.title}</h3>
+            </a>
+                <ul class="product_features_list">
+                <li><i class="fa-solid fa-bed"> </i>Beds: ${apart.bedrooms.length > 1 ? apart.bedrooms.join(',') : apart.bedrooms[0]}</li>
+                <li><i class="fa-solid fa-bath"> </i> Baths: ${apart.bathrooms}</li>
+                    <li><i class="fa-solid fa-expand"> </i> sqrft: ${apart.feet}</li>
+                    </ul>
+                  <div class="price_container">
+                  <h5>kshs${apart.price}.000</h5>
+                  </div>
+                  </div>
+                  </div>
+                  `;
+                  content.appendChild(property)
+                  property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+                })
+                
+                
+                
+                let tabsBtn = document.querySelectorAll(".featured_properties_menu_list li button")
+                let product = []
+      
+      
+      let productCard = document.querySelectorAll(" .product_card")
+      console.log(productCard);
+      tabsBtn.forEach((tabBtn) => {
+        
+        // content.innerHTML = ""
+        tabBtn.addEventListener("click", () => {
+          
+          content.innerHTML = ""
+          if (tabBtn.textContent == "Apartments"){
+            apartments.forEach((apart) => {
+              const property = document.createElement("div")
+              property.classList.add("product_card");
+              property.setAttribute('data-id', apart.id)
+              
+              
+              property.innerHTML = `
+              <div class="img_container" data-id = ${apart.id}>
+              <img src="${apart.image}" alt="product" class="product_img">
+              <div class="text_container">
+              <a href="properties/property.html?link=${apart.link}">
+              <h3>${apart.title}</h3>
+              </a>
+              <ul class="product_features_list">
+              <li><i class="fa-solid fa-bed"> </i>Beds: ${apart.bedrooms.length > 1 ? apart.bedrooms.join(',') : apart.bedrooms[0]}</li>
+                    <li><i class="fa-solid fa-bath"> </i> Baths: ${apart.bathrooms}</li>
+                    <li><i class="fa-solid fa-expand"> </i> sqrft: ${apart.feet}</li>
+                    </ul>
+                    <div class="price_container">
+                    <h5>kshs${apart.price}.000</h5>
+                    </div>
+                    </div>
+                    </div>
+                    </div>`;
+                    content.appendChild(property)
+                    
+          property.addEventListener("click", () => {
+          })
+          property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+          console.log(property);
+        })
+        
+      }
+      else if (tabBtn.textContent == "Villas"){
+          // content.innerHTML = ""
+          villas.forEach((apart) => {
+            const property = document.createElement("div")
+            property.classList.add("product_card");
+            property.setAttribute('data-id', apart.id)
+            property.innerHTML =  `  
+            <div class="img_container" data-id = ${apart.id}>
+            <img src="${apart.image}" alt="product" class="product_img">
+            <div class="text_container">
+            <a href="properties/property.html?link=${apart.link}">
+            <h3>${apart.title}</h3>
+            </a>
+            <ul class="product_features_list">
+            <li><i class="fa-solid fa-bed"> </i>Beds: ${apart.bedrooms.length > 1 ? apart.bedrooms.join(',') : apart.bedrooms[0]}</li>
+            <li><i class="fa-solid fa-bath"> </i> Baths: ${apart.bathrooms}</li>
+            <li><i class="fa-solid fa-expand"> </i> sqrft: ${apart.feet}</li>
+            </ul>
+            <div class="price_container">
+            <h5>kshs${apart.price}.000</h5>
+            </div>
+            </div>
+            </div>
+            `;
+                    content.appendChild(property)
+                    property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+                  })
+                  
+                }
+                else if (tabBtn.textContent == "Land"){
+                  // content.innerHTML = ""
+          lands.forEach((apart) => {
+            const property = document.createElement("div")
+            property.classList.add("product_card");
+            property.setAttribute('data-id', apart.id)
+            property.innerHTML =  `
+            
+            <div class="img_container" data-id = ${apart.id}>
+            <img src="${apart.image}"
+            alt="product" class="product_img">
+            <div class="text_container">
+            <a href="properties/property.html?link=${apart.link}">
+            <h4>${apart.location}</h4>
+            <h3>${apart.feet} Acres</h3>
+            </a>
+            
+            <div class="price_container">
+            <h5>Kshs ${apart.price}M</h5>
+            </div>
+            </div>
+            
+            </div>
+            `;
+            content.appendChild(property)
+            property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+          })
+          
+        }
+        else if (tabBtn.textContent == "Cottages"){
+          // content.innerHTML = ""
+          cottage.forEach((apart) => {
+            const property = document.createElement("div")
+            property.classList.add("product_card");
+            property.setAttribute('data-id', apart.id)
+            property.innerHTML =  `
+            <div class="img_container" data-id = ${apart.id}>
+            <img src="${apart.image}" alt="product" class="product_img">
+                <div class="text_container">
+                <a href="properties/property.html?link=${apart.link}">
+                    <h3>${apart.title}</h3>
+                    </a>
+                    <ul class="product_features_list">
+                    <li><i class="fa-solid fa-bed"> </i>Beds: ${apart.bedrooms.length > 1 ? apart.bedrooms.join(',') : apart.bedrooms[0]}</li>
+                    <li><i class="fa-solid fa-bath"> </i> Baths: ${apart.bathrooms}</li>
+                    <li><i class="fa-solid fa-expand"> </i> sqrft: ${apart.feet}</li>
+                    </ul>
+                    <div class="price_container">
+                    <h5>kshs${apart.price}.000</h5>
+                    </div>
+                    </div>
+                    </div>
+                    `;
+                    content.appendChild(property)
+                    property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+                  })
+                  
+                }
+        else if (tabBtn.textContent == "View All"){
+          // content.innerHTML = ""
+          all.forEach((apart) => {
+            const property = document.createElement("div")
+            property.classList.add("product_card");
+            property.setAttribute('data-id', apart.id)
+
+            property.innerHTML =  `
+            <div class="img_container" data-id = ${apart.id}>
+            <img src="${apart.image}" alt="product" class="product_img">
+                <div class="text_container">
+                <a href="properties/property.html?link=${apart.link}">
+                <h3>${apart.title}</h3>
+                </a>
+                <ul class="product_features_list">
+                <li><i class="fa-solid fa-bed"> </i>Beds: ${apart.bedrooms.length > 1 ? apart.bedrooms.join(',') : apart.bedrooms[0]}</li>
+                <li><i class="fa-solid fa-bath"> </i> Baths: ${apart.bathrooms}</li>
+                <li><i class="fa-solid fa-expand"> </i> sqrft: ${apart.feet}</li>
+                    </ul>
+                    <div class="price_container">
+                    <h5>kshs${apart.price}.000</h5>
+                    </div>
+                    </div>
+                    </div>
+                    `;
+                    content.appendChild(property)
+                    property.addEventListener('click', () => {
+  window.location.href = `properties/property.html?link=${apart.link}`;
+});
+
+                  })
+                
+                }
+                console.log("fiesttaaa");
+                console.log(tabBtn.textContent);
+                tabsBtn.forEach((btn) => btn.classList.remove("active"));
+                
+              console.log(tabBtn.dataset.tab);
+              
+              console.log(tabBtn.id);
+              
+              // document.getElementById(tabBtn.dataset.tab).classList.add("active")
+              tabBtn.classList.add("active");
+              
+            })
+          })
+          
+         
+
+// })
+// document.addEventListener("DOMContentLoaded", ()=> {
+  tabsBtn.forEach((tabBtn) => {
+  tabBtn.addEventListener("click", () => {
+    product = content.querySelectorAll(".product_card")
+    product.forEach((prop) => prop.addEventListener("click", function() {
+      // console.log();
+      assets.forEach((asset => {
+        // console.log(asset.id);
+        if (1 * prop.dataset.id === asset.id) {
+          console.log(asset.title);
+          console.log(asset.location);
+          console.log(asset.description);
+          console.log(asset.price);
+          console.log(asset.feet);
+          console.log(asset.type);
+
+        }
+
+      }))
+      console.log("yesss");
+      console.log(prop.dataset.id);
+    }))
+    console.log(product);
+    console.log("yazz");
+  })
+})
+
+product = content.querySelectorAll(".product_card")
+    product.forEach((prop) => prop.addEventListener("click", function() {
+       assets.forEach((asset => {
+        // console.log(asset.id);
+        if (1 * prop.dataset.id === asset.id) {
+          console.log(asset.title);
+        }
+
+      }))
+      console.log("yesss");
+      console.log(prop.dataset.id);
+    }))
+  // console.log(product);
+  // console.log(content.children);
+// }) 
+
+
+      const container = document.querySelector(".top_properties_content_container")
+
+      container.innerHTML = "";
+      
+      const propCard = document.createElement("div")
+      // propCard.classList.add("property-card");
+      assets.find((property) => {
+        if (property.category === "featured") {
+          console.log("musolini");
+          propCard.innerHTML = 
+          `<div class="product">
+            <div class="img_container">
+              <img src="${property.image}" alt="product" class="product_img">
+              <div class="text_container">
+                <a href="#">
+                  <h3>${property.title}</h3>
+                  </a>
+                <div class="price_container">
+                  <h5>${property.price}</h5>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        container.appendChild(propCard);
+       }
+    })
+      
     }
 
-    modal.classList.remove("hidden");
-  });
-});
-
-const operationsTab = document.querySelector(".operations__tab-container");
-const operations = document.querySelector(".operations");
-
-console.log(operations);
-
-operationsTab.querySelectorAll(".operations__tab").forEach((element) => {
-  element.addEventListener("click", () => {
-    let currTab = element.dataset.tab;
-    if (currTab === "1") {
-      operations.style.backgroundImage =
-        'url("./image/mortgage-house-loan-website-login-graphic-concept.jpg")';
-    } else if (currTab === "2") {
-      operations.style.backgroundImage =
-        'url("./image/man-holding-house-sale-icon.jpg")';
-    } else if (currTab === "3") {
-      operations.style.backgroundImage =
-        'url("./image/man-holding-house-sale-icon.jpg")';
-    }
-    console.log("yaaaas", element.dataset.tab);
-    // if (element.dataset === 3) {
-
-    operations.style.backgroundImage.opacity = "0.5";
-
-    operations.style.backgroundSize = "cover";
-    operations.style.backgroundPosition = "center";
-    operations.style.backgroundRepeat = "no-repeat";
-    // }
-  });
-});
-
-// operationsTab.querySelectorAll(".operations__tab").forEach(
-//   el.addEventListener("click", () => {
-//     console.log(el.dataset);
-//       console.log(el);
-//     }
-//   })
-// );
-
-window.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target != dropProps) dropContent.classList.remove("showDrop");
-  console.log(dropContent.classList);
-});
-
-// const openLoginModal = function () {
-//   loginModal.classList.remove("hidden");
-//   overlay.classList.remove("hidden");
-// };
-
-// const closeLoginModal = function () {
-//   loginModal.classList.add("hidden");
-//   overlay.classList.add("hidden");
-//   console.log(overlay.classList);
-// };
-
-// console.log(btnOpenLogin);
-
-// btnOpenLogin.addEventListener("click", function (e) {
-//   e.preventDefault();
-//   openLoginModal();
-// });
-
-loginClose.addEventListener("click", closeLoginModal);
-
-overlay.addEventListener("click", closeLoginModal);
-
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !loginModal.classList.contains("hidden")) {
-    closeLoginModal();
-  }
-});
-
-const propModalClose = document.querySelector(".close");
-
-const btnOpenProp = document.querySelector(".open-prop");
-
-if (btnOpenProp) {
-  btnOpenProp.addEventListener("click", function (e) {
-    e.preventDefault();
-    propModal.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-  });
-}
-
-if (propModalClose) {
-  propModalClose.addEventListener("click", function () {
-    propModal.classList.add("hidden");
-    overlay.classList.add("hidden");
-  });
-}
-
-overlay.addEventListener("click", function () {
-  propModal.classList.add("hidden");
-  loginModal.classList.add("hidden"); // in case login is open
-  overlay.classList.add("hidden");
-});
-
-// var swiper = new Swiper(".mySwiper", {
-//   spaceBetween: 30,
-//   centeredSlides: true,
-//   autoplay: {
-//     delay: 2500,
-//     disableOnInteraction: false,
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//     clickable: true,
-//   },
-//   navigation: {
-//     nextEl: ".swiper-button-next",
-//     prevEl: ".swiper-button-prev",
-//   },
-// });
-
-let scores = [
-  { name: "Wasan", duration: 93 },
-  { name: "Muntaser", duration: 122 },
-  { name: "Noura", duration: 235 },
-  { name: "Maitha", duration: 927 },
-];
-
-function ultimateScoreBoard(arr, count) {
-  let final = "";
-  for (let i = 0; i < count; i++) {
-    let min = `${Math.floor(arr[i].duration / 60)}`;
-    let rem = `${arr[i].duration % 60}`;
-    let fin = `${min}:${rem}`;
-    final += `#0${i + 1} - ${min.length == 1 ? "0" : ""}${min}:${
-      rem.length == 1 ? "0" : ""
-    }${rem}, ${arr[i].name}\n`;
-  }
-  return final;
-}
-
-let Score = ultimateScoreBoard(scores, 3);
-console.log(Score);
+    loadProps();
